@@ -65,7 +65,7 @@
 		<button onclick="start()">START</button>
 		
 		<script>
-			let interval, 
+			let interval, lvl = 3, color, xTemp, yTemp, colorTemp, i = 0,
 			cell = [
 			[0,0,0,0,0],
 			[0,0,0,0,0],
@@ -80,30 +80,47 @@
 			[0,0,0,0,0],
 			[0,0,0,0,0]
 			],
-			locator = [],
-			lvl = 3, xtemp, ytemp, i = 0;
+			locator = [];
 			
 			function start() {
 				randomize();
 				i = 0;
 				interval = setInterval(draw, 1000 / 3);
+				
 			}
 			
 			function randomize() {
+				patt = [
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0]
+				],
+				locator = [];
 				for(i = 0; i < lvl;) {
-					xtemp = Math.floor(Math.random() * 5);
-					ytemp = Math.floor(Math.random() * 5);
-					if(patt[xtemp][ytemp] != 1) {
-						patt[xtemp][ytemp] = 1;
-						locator.push([xtemp, ytemp]);
+					xTemp = Math.floor(Math.random() * 5);
+					yTemp = Math.floor(Math.random() * 5);
+					colorTemp = Math.floor(Math.random() * 4);
+					if(patt[xTemp][yTemp] != 1) {
+						patt[xTemp][yTemp] = 1;
+						if(colorTemp > 2)
+							patt[xTemp][yTemp] = 2;
+						locator.push([xTemp, yTemp, colorTemp]);
 						i++;
 					}
 				}
 			}
 			
 			function draw() {
-				console.log();
-				$(".x" + (locator[i][0] + 1) + ".y" + (locator[i][1] + 1)).css("background-color", "yellow");
+				if(locator[i][2] <= 2)
+					color = "yellow";
+				else if(locator[i][2] > 2)
+					color = "red";
+				$(".x" + (locator[i][0] + 1) + ".y" + (locator[i][1] + 1)).css("background-color", color);
+				setTimeout(function(locatorP, i2) {
+					$(".x" + (locatorP[i2][0] + 1) + ".y" + (locatorP[i2][1] + 1)).css("background-color", "white");
+				}.bind(null, locator, i), 1000 / 3);
 				i++;
 				if(i == lvl) {
 					clearInterval(interval);
