@@ -65,36 +65,49 @@
 		<button onclick="start()">START</button>
 		
 		<script>
-			let interval, cell = [
+			let interval, 
+			cell = [
 			[0,0,0,0,0],
 			[0,0,0,0,0],
 			[0,0,0,0,0],
 			[0,0,0,0,0],
 			[0,0,0,0,0]
 			],
-			r = 0, c = 0;
+			patt = [
+			[0,0,0,0,0],
+			[0,0,0,0,0],
+			[0,0,0,0,0],
+			[0,0,0,0,0],
+			[0,0,0,0,0]
+			],
+			locator = [],
+			lvl = 3, xtemp, ytemp, i = 0, i2 = 0;
+			
 			function start() {
-				interval = setInterval(draw, 1000/10);
+				randomize();
+				i = 0;
+				interval = setInterval(draw, 1000 / 3);
+			}
+			
+			function randomize() {
+				for(i = 0; i < lvl;) {
+					xtemp = Math.floor(Math.random() * 5);
+					ytemp = Math.floor(Math.random() * 5);
+					if(patt[xtemp][ytemp] != 1) {
+						patt[xtemp][ytemp] = 1;
+						locator.push([xtemp, ytemp]);
+						i++;
+					}
+				}
 			}
 			
 			function draw() {
-				if(cell[r][c] == 0) {
-					$(".x" + (r + 1) + ".y" + (c + 1)).css("background-color", "red");
-					cell[r][c] = 1;
-				}
-				else {
-					$(".x" + (r + 1) + ".y" + (c + 1)).css("background-color", "white");
-					cell[r][c] = 0;
-				}
-				if(c == 4 && r == 4)
+				console.log();
+				$(".x" + (locator[i][0] + 1) + ".y" + (locator[i][1] + 1)).css("background-color", "yellow");
+				i++;
+				if(i == lvl) {
 					clearInterval(interval);
-				else if(c < 4)
-					c++;
-				else if(r < 4) {
-					r++;
-					c = 0;
 				}
-				
 			}
 		</script>
 	</body>
