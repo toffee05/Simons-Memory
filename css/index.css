@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'nowthin';
+    src: url('../fonts/now.thin-webfont.woff2') format('woff2'),
+         url('../fonts/now.thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #20242b;
+}
+
+.titleCont {
+	width: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	margin: auto;
+}
+
+.title {
+	font-family: nowthin;
+	text-align: center;
+	color: white;
+	font-size: 60px;
+	display: inline-block;
+	
+}
+
+.titWCont {
+	display: inline-block;
+	float: left;
+}
+
+.titW {
+	margin: -20px;
+}
+
+.titN {
+	display: inline-block;
+	font-size: 130px;
+}

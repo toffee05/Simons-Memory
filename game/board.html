@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tic Tac Toe</title>
+		<meta charset="UTF-8">
+		<meta name="author" content="Christopher Allen Abit">
+		<meta name="keywords" content="tic tac toe, tic, tac, toe">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- link href="css/game.css" type="text/css" rel="stylesheet"-->
+		<script src="../scripts/jquery.js"></script>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			
+			.gameContainer {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.cell {
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				float: left;
+				
+			}
+		</style>
+		<!-- script src="game.js"></script> -->
+	</head>
+	<body>
+		<div id="gameContainer">
+			<div class="cell x1 y1"></div>
+			<div class="cell x1 y2"></div>
+			<div class="cell x1 y3"></div>
+			<div class="cell x1 y4"></div>
+			<div class="cell x1 y5"></div>
+			<br style="clear: both;">
+			<div class="cell x2 y1"></div>
+			<div class="cell x2 y2"></div>
+			<div class="cell x2 y3"></div>
+			<div class="cell x2 y4"></div>
+			<div class="cell x2 y5"></div>
+			<br style="clear: both;">
+			<div class="cell x3 y1"></div>
+			<div class="cell x3 y2"></div>
+			<div class="cell x3 y3"></div>
+			<div class="cell x3 y4"></div>
+			<div class="cell x3 y5"></div>
+			<br style="clear: both;">
+			<div class="cell x4 y1"></div>
+			<div class="cell x4 y2"></div>
+			<div class="cell x4 y3"></div>
+			<div class="cell x4 y4"></div>
+			<div class="cell x4 y5"></div>
+			<br style="clear: both;">
+			<div class="cell x5 y1"></div>
+			<div class="cell x5 y2"></div>
+			<div class="cell x5 y3"></div>
+			<div class="cell x5 y4"></div>
+			<div class="cell x5 y5"></div>
+			<br style="clear: both;">
+		</div>
+		<button onclick="start()"></button>
+		
+		<script>
+			let interval, cell = [
+			[0,0,0,0,0],
+			[0,0,0,0,0],
+			[0,0,0,0,0],
+			[0,0,0,0,0],
+			[0,0,0,0,0]
+			],
+			r = 0, c = 0;
+			function start() {
+				interval = setInterval(draw, 1000/10);
+			}
+			
+			function draw() {
+				if(cell[r][c] == 0) {
+					$(".x" + (r + 1) + ".y" + (c + 1)).css("background-color", "red");
+					cell[r][c] = 1;
+				}
+				else {
+					$(".x" + (r + 1) + ".y" + (c + 1)).css("background-color", "white");
+					cell[r][c] = 0;
+				}
+				if(c == 4 && r == 4)
+					clearInterval(interval);
+				else if(c < 4)
+					c++;
+				else if(r < 4) {
+					r++;
+					c = 0;
+				}
+				
+			}
+		</script>
+	</body>
+</html>
