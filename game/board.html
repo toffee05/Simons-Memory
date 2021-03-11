@@ -9,133 +9,139 @@
 		<!-- link href="css/game.css" type="text/css" rel="stylesheet"-->
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<style>
-			* {
-				box-sizing: border-box;
+			@font-face {
+				font-family: 'nowthin';
+				src: url('../assets/fonts/now.thin-webfont.woff2') format('woff2'),
+					 url('../assets/fonts/now.thin-webfont.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+			}
+		
+			body {
+				background-color: #202126;
 			}
 			
-			.gameContainer {
-				margin: 0;
-				padding: 0;
+			#screenCont {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			#scoreCont {
+				margin-left: 18px;
+			}
+			
+			#navCont {
+				margin-right: 18px;
+			}
+			
+			.score {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 200px;
+				height: 200px;
+				background: #3d3f4a;
+				border-radius: 10px;
+				font-family: nowthin;
+				font-weight: bolder;
+				color: white;
+			}
+			
+			.navigate {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 200px;
+				height: 200px;
+				cursor: pointer;
+				background: #3d3f4a;
+				border-radius: 10px;
+				font-family: nowthin;
+				font-weight: bolder;
+				color: white;
+			}
+			
+			
+			#cellCont {
+				border: 4px solid #202126;
+				display: inline-block;
+				min-width: 450px;
+				background-color: #363740;
 			}
 			
 			.cell {
-				display: inline-block;
-				width: 100px;
-				height: 100px;
-				border: 1px solid black;
+				width: 90px;
+				height: 90px;
 				float: left;
+				border: 3px solid #27282e;
 				
+			}
+			
+			.cell img {
+				width: 90px;
+				height: 90px;
+				display: none;
 			}
 		</style>
 		<!-- script src="game.js"></script> -->
 	</head>
 	<body>
-		<div id="gameContainer">
-			<div class="cell x1 y1"></div>
-			<div class="cell x1 y2"></div>
-			<div class="cell x1 y3"></div>
-			<div class="cell x1 y4"></div>
-			<div class="cell x1 y5"></div>
-			<br style="clear: both;">
-			<div class="cell x2 y1"></div>
-			<div class="cell x2 y2"></div>
-			<div class="cell x2 y3"></div>
-			<div class="cell x2 y4"></div>
-			<div class="cell x2 y5"></div>
-			<br style="clear: both;">
-			<div class="cell x3 y1"></div>
-			<div class="cell x3 y2"></div>
-			<div class="cell x3 y3"></div>
-			<div class="cell x3 y4"></div>
-			<div class="cell x3 y5"></div>
-			<br style="clear: both;">
-			<div class="cell x4 y1"></div>
-			<div class="cell x4 y2"></div>
-			<div class="cell x4 y3"></div>
-			<div class="cell x4 y4"></div>
-			<div class="cell x4 y5"></div>
-			<br style="clear: both;">
-			<div class="cell x5 y1"></div>
-			<div class="cell x5 y2"></div>
-			<div class="cell x5 y3"></div>
-			<div class="cell x5 y4"></div>
-			<div class="cell x5 y5"></div>
-			<br style="clear: both;">
+		<br><br>
+		<div id="screenCont">
+			<div id="navCont">
+				<div class="navigate" id="home">Home</div><br>
+				<script>
+					$("#home").click(function() {
+						location.href = "../index.html";
+					})
+				</script>
+				<div class="navigate" id="start">Start</div>
+				<script>
+					$("#start").click(function() {
+						start();
+					})
+				</script>
+			</div>
+			<div id="cellCont">
+				<div class="cell x1 y1"><img></div>
+				<div class="cell x1 y2"><img></div>
+				<div class="cell x1 y3"><img></div>
+				<div class="cell x1 y4"><img></div>
+				<div class="cell x1 y5"><img></div>
+				<br style="clear: both;">
+				<div class="cell x2 y1"><img></div>
+				<div class="cell x2 y2"><img></div>
+				<div class="cell x2 y3"><img></div>
+				<div class="cell x2 y4"><img></div>
+				<div class="cell x2 y5"><img></div>
+				<br style="clear: both;">
+				<div class="cell x3 y1"><img></div>
+				<div class="cell x3 y2"><img></div>
+				<div class="cell x3 y3"><img></div>
+				<div class="cell x3 y4"><img></div>
+				<div class="cell x3 y5"><img></div>
+				<br style="clear: both;">
+				<div class="cell x4 y1"><img></div>
+				<div class="cell x4 y2"><img></div>
+				<div class="cell x4 y3"><img></div>
+				<div class="cell x4 y4"><img></div>
+				<div class="cell x4 y5"><img></div>
+				<br style="clear: both;">
+				<div class="cell x5 y1"><img></div>
+				<div class="cell x5 y2"><img></div>
+				<div class="cell x5 y3"><img></div>
+				<div class="cell x5 y4"><img></div>
+				<div class="cell x5 y5"><img></div>
+				<br style="clear: both;">
+			</div>
+			<div id="scoreCont">
+				<div class="score" id="lvl">Level: <span></span></div><br>
+				<div class="score" id="points">Points: <span></span></div>
+			</div>
 		</div>
-		<button onclick="start()">START</button>
 		
-		<script>
-			var interval, lvl = 3, color, xTemp, yTemp, colorTemp, i = 0, i2,
-			locator = [...Array(lvl)].map(e => Array(lvl));
-			
-			function start() {
-				randomize();
-				i2 = i;
-				interval = setInterval(draw, 1000 / 3);
-				user();
-			}
-			
-			function randomize() {
-				(function () { locator = [...Array(lvl)].map(e => Array(lvl)); i = 0; }());
-				for(i = 0; i < lvl;) {
-					xTemp = Math.floor(Math.random() * 5);
-					yTemp = Math.floor(Math.random() * 5);
-					colorTemp = Math.floor(Math.random() * 4);
-					if(typeof(locator[i][0]) === 'undefined') {
-						if(colorTemp > 2)
-							locator[i] = [xTemp, yTemp, "red"];
-						else
-							locator[i] = [xTemp, yTemp, "yellow"];
-						i++;
-					}
-				}
-				(function () { i = 0; }());
-			}
-			
-			function draw() {
-				
-				$(".x" + (locator[i2][0] + 1) + ".y" + (locator[i2][1] + 1)).css("background-color", locator[i2][2]);
-				setTimeout(function(locatorP, i3) {
-					$(".x" + (locatorP[i3][0] + 1) + ".y" + (locatorP[i3][1] + 1)).css("background-color", "white");
-				}.bind(null, locator, i2), 1000 / 3.2);
-				i2++;
-				if(i2 == lvl) {
-					clearInterval(interval);
-					(function () { i = 0; }());
-				}
-			}
-			
-			function user() {
-				$(".cell").click(function(e) {
-					e.stopImmediatePropagation();
-					inputTemp = $(this).attr("class").split(/\s+/);
-					inputTemp.shift();
-					input = [parseInt(inputTemp[0].charAt(1)) - 1, parseInt(inputTemp[1].charAt(1)) - 1];
-					locator[i].pop();
-					if(input[0] != locator[i][0] || input[1] != locator[i][1]) {
-						alert("You Lost");
-						lose();
-					}
-					else if(i == lvl - 1) {
-						alert("Nice! Next Level.");
-						win();
-					}
-					i++;
-				});
-			}
-			
-			function win() {
-				lvl++;
-				(function () { locator = [...Array(lvl)].map(e => Array(lvl)); i = 0; }());
-				start();
-			}
-			
-			function lose() {
-				alert("You reached lvl " + (lvl - 2));
-				lvl = 3;
-				(function () { locator = [...Array(lvl)].map(e => Array(lvl)); i = 0; }());
-				$(".cell").off();
-			}
+		<script src="../scripts/game.js">
 		</script>
 	</body>
 </html>
