@@ -97,7 +97,7 @@
 				$(".x" + (locator[i2][0] + 1) + ".y" + (locator[i2][1] + 1)).css("background-color", locator[i2][2]);
 				setTimeout(function(locatorP, i3) {
 					$(".x" + (locatorP[i3][0] + 1) + ".y" + (locatorP[i3][1] + 1)).css("background-color", "white");
-				}.bind(null, locator, i2), 1000 / 3);
+				}.bind(null, locator, i2), 1000 / 3.2);
 				i2++;
 				if(i2 == lvl) {
 					clearInterval(interval);
@@ -131,7 +131,7 @@
 			}
 			
 			function lose() {
-				alert("You reached lvl " + lvl - 2);
+				alert("You reached lvl " + (lvl - 2));
 				lvl = 3;
 				(function () { locator = [...Array(lvl)].map(e => Array(lvl)); i = 0; }());
 				$(".cell").off();
