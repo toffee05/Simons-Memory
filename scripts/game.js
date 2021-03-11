@@ -29,9 +29,11 @@ function randomize() {
 			
 function draw() {
 	$(".x" + (locator[i2][0] + 1) + ".y" + (locator[i2][1] + 1) + " img").attr("src", locator[i2][2]);
+	$(".x" + (locator[i2][0] + 1) + ".y" + (locator[i2][1] + 1) + " img").fadeIn(50);
 	$(".x" + (locator[i2][0] + 1) + ".y" + (locator[i2][1] + 1) + " img").show();
 	setTimeout(function(locatorP, i3) {
 		$(".x" + (locatorP[i3][0] + 1) + ".y" + (locatorP[i3][1] + 1) + " img").removeAttr("src");
+		$(".x" + (locatorP[i3][0] + 1) + ".y" + (locatorP[i3][1] + 1) + " img").fadeOut(50);
 		$(".x" + (locatorP[i3][0] + 1) + ".y" + (locatorP[i3][1] + 1) + " img").hide();
 	}.bind(null, locator, i2), 1000 / 3.2);
 	i2++;
@@ -44,6 +46,8 @@ function draw() {
 function user() {
 	$(".cell").click(function(e) {
 		e.stopImmediatePropagation();
+		click.pause();
+		click.currentTime = 0;
 		click.play();
 		inputTemp = $(this).attr("class").split(/\s+/);
 		inputTemp.shift();
@@ -70,7 +74,8 @@ function win() {
 			
 function lose() {
 	alert("You reached lvl " + (lvl - 2));
-	lvl = 3;
+	$("#points span").html(0);
+	lvl = 3, score = 0;
 	(function () { locator = [...Array(lvl)].map(e => Array(lvl)); i = 0; }());
 	$(".cell").off();
 }
