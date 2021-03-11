@@ -131,10 +131,10 @@
 			}
 			
 			function lose() {
+				alert("You reached lvl " + lvl - 2);
 				lvl = 3;
 				(function () { locator = [...Array(lvl)].map(e => Array(lvl)); i = 0; }());
 				$(".cell").off();
-			}
 		</script>
 	</body>
 </html>
