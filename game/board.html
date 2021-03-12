@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Tic Tac Toe</title>
+		<title>Simon's Game</title>
 		<meta charset="UTF-8">
 		<meta name="author" content="Christopher Allen Abit">
-		<meta name="keywords" content="tic tac toe, tic, tac, toe">
+		<meta name="keywords" content="simons memory, simon, memory, memory game, game, arcade">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- link href="css/game.css" type="text/css" rel="stylesheet"-->
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -15,6 +15,22 @@
 					 url('../assets/fonts/now.thin-webfont.woff') format('woff');
 				font-weight: normal;
 				font-style: normal;
+			}
+			
+			html, body {
+				height: 99%;
+			}
+			
+			.main {
+				height: 100%;
+				width: 100%;
+				display: table;
+			}
+
+			.wrapper {
+				display: table-cell;
+				height: 100%;
+				vertical-align: middle;
 			}
 		
 			body {
@@ -66,81 +82,96 @@
 			#cellCont {
 				border: 4px solid #202126;
 				display: inline-block;
-				min-width: 480px;
+				min-width: 450px;
 				background-color: #363740;
 			}
 			
 			.cell {
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
 				width: 90px;
 				height: 90px;
 				float: left;
-				border: 3px solid #27282e;
-				
+				background: url('../assets/images/frame.png') no-repeat;
+				background-size: cover;
+				image-rendering: auto;
+				image-rendering: crisp-edges;
+				image-rendering: pixelated;
+				border: 3px solid #202126;
 			}
 			
 			.cell img {
+				src: '../assets/images/frame.png';
+				image-rendering: auto;
+				image-rendering: crisp-edges;
+				image-rendering: pixelated;
 				width: 90px;
 				height: 90px;
 				display: none;
 			}
 		</style>
-		<!-- script src="game.js"></script> -->
 	</head>
 	<body>
-		<br><br>
-		<div id="screenCont">
-			<div id="navCont">
-				<div class="navigate" id="home">Home</div><br>
-				<script>
-					$("#home").click(function() {
-						location.href = "../index.html";
-					})
-				</script>
-				<div class="navigate" id="start">Start</div>
-				<script>
-					$("#start").click(function() {
-						start();
-					})
-				</script>
-			</div>
-			<div id="cellCont">
-				<div class="cell x1 y1"><img></div>
-				<div class="cell x1 y2"><img></div>
-				<div class="cell x1 y3"><img></div>
-				<div class="cell x1 y4"><img></div>
-				<div class="cell x1 y5"><img></div>
-				<br style="clear: both;">
-				<div class="cell x2 y1"><img></div>
-				<div class="cell x2 y2"><img></div>
-				<div class="cell x2 y3"><img></div>
-				<div class="cell x2 y4"><img></div>
-				<div class="cell x2 y5"><img></div>
-				<br style="clear: both;">
-				<div class="cell x3 y1"><img></div>
-				<div class="cell x3 y2"><img></div>
-				<div class="cell x3 y3"><img></div>
-				<div class="cell x3 y4"><img></div>
-				<div class="cell x3 y5"><img></div>
-				<br style="clear: both;">
-				<div class="cell x4 y1"><img></div>
-				<div class="cell x4 y2"><img></div>
-				<div class="cell x4 y3"><img></div>
-				<div class="cell x4 y4"><img></div>
-				<div class="cell x4 y5"><img></div>
-				<br style="clear: both;">
-				<div class="cell x5 y1"><img></div>
-				<div class="cell x5 y2"><img></div>
-				<div class="cell x5 y3"><img></div>
-				<div class="cell x5 y4"><img></div>
-				<div class="cell x5 y5"><img></div>
-				<br style="clear: both;">
-			</div>
-			<div id="scoreCont">
-				<div class="score" id="lvl">Level: <span>1</span></div><br>
-				<div class="score" id="points">Points: <span>0</span></div>
+		<div class="main">
+			<div class = "wrapper">
+				<div id="screenCont">
+					<div id="navCont">
+						<div class="navigate" id="home">Home</div><br>
+						<script>
+							$("#home").click(function() {
+								location.href = "../index.html";
+							})
+						</script>
+						<div class="navigate start" id="startQuit">Start</div>
+						<script>
+							let sq = 0;
+							$(".start").click(function(e) {
+								sq++;
+								e.preventDefault();
+								start(sq, false);
+							});
+						</script>
+					</div>
+					<div id="cellCont">
+						<div class="cell x1 y1"><img></div>
+						<div class="cell x1 y2"><img></div>
+						<div class="cell x1 y3"><img></div>
+						<div class="cell x1 y4"><img></div>
+						<div class="cell x1 y5"><img></div>
+						<br style="clear: both;">
+						<div class="cell x2 y1"><img></div>
+						<div class="cell x2 y2"><img></div>
+						<div class="cell x2 y3"><img></div>
+						<div class="cell x2 y4"><img></div>
+						<div class="cell x2 y5"><img></div>
+						<br style="clear: both;">
+						<div class="cell x3 y1"><img></div>
+						<div class="cell x3 y2"><img></div>
+						<div class="cell x3 y3"><img></div>
+						<div class="cell x3 y4"><img></div>
+						<div class="cell x3 y5"><img></div>
+						<br style="clear: both;">
+						<div class="cell x4 y1"><img></div>
+						<div class="cell x4 y2"><img></div>
+						<div class="cell x4 y3"><img></div>
+						<div class="cell x4 y4"><img></div>
+						<div class="cell x4 y5"><img></div>
+						<br style="clear: both;">
+						<div class="cell x5 y1"><img></div>
+						<div class="cell x5 y2"><img></div>
+						<div class="cell x5 y3"><img></div>
+						<div class="cell x5 y4"><img></div>
+						<div class="cell x5 y5"><img></div>
+						<br style="clear: both;">
+					</div>
+					<div id="scoreCont">
+						<div class="score" id="lvl">Level: <span>1</span></div><br>
+						<div class="score" id="points">Points: <span>0</span></div>
+					</div>
+				</div>
 			</div>
 		</div>
-		
 		<script src="../scripts/game.js">
 		</script>
 	</body>
