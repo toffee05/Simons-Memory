@@ -26,6 +26,7 @@ function start() {
 	randomize();
 	i2 = 0;
 	interval = setInterval(draw, 1000 / 3 - 50);
+	i3 = 0;
 	setTimeout(user, 1000 / 3 * lvl + 10);
 }
 			
@@ -35,7 +36,7 @@ function randomize() {
 		xTemp = Math.floor(Math.random() * 5);
 		yTemp = Math.floor(Math.random() * 5);
 		colorTemp = Math.floor(Math.random() * 5);
-		if(typeof(locator[i][0]) === 'undefined' && (locatorTemp[0] !== xTemp && locatorTemp[1] !== yTemp)) {
+		if(typeof(locator[i][0]) === 'undefined' && (locatorTemp[0] !== xTemp + 1 && locatorTemp[1] !== yTemp + 1)) {
 			if(colorTemp > 2 && badTile < lvl - 1) {
 				locator[i] = [(xTemp + 1), (yTemp + 1), "../assets/images/badTile.png"];
 				badTile++;
@@ -46,7 +47,6 @@ function randomize() {
 			i++;
 		}
 	}
-	(function () { i = 0; }());
 }
 			
 function draw() {
@@ -68,7 +68,6 @@ function draw() {
 }
 			
 function user() {
-	i3 = 0;
 	$(".cell").click(function(e) {
 		while(!locator[i][2].includes("goodTile")) 
 			i++;
@@ -80,7 +79,6 @@ function user() {
 		inputTemp.shift();
 		input = [parseInt(inputTemp[0].charAt(1)), parseInt(inputTemp[1].charAt(1))];
 		$("#points span").html(++score);
-		console.log(i3);
 		
 		if(input[0] != locator[i][0] || input[1] != locator[i][1]) {
 			sq = 0;
@@ -99,6 +97,7 @@ function user() {
 }
 			
 function win() {
+	i = 0, i2 = 0, i3 = 0;
 	$(".cellInner").removeClass("flipActivate");
 	lvl++;
 	newLvl = true;
@@ -106,6 +105,7 @@ function win() {
 }
 			
 function lose() {
+	i = 0, i2 = 0, i3 = 0;
 	$("img").removeAttr("src");
 	$(".cellInner").removeClass("flipActivate");
 	$(".start").html("Start");;
