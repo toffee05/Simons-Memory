@@ -6,190 +6,68 @@
 		<meta name="author" content="Christopher Allen Abit">
 		<meta name="keywords" content="simons memory, simon, memory, memory game, game, arcade">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- link href="css/game.css" type="text/css" rel="stylesheet"-->
-		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<style>
-			@font-face {
-				font-family: 'nowthin';
-				src: url('../assets/fonts/now.thin-webfont.woff2') format('woff2'),
-					 url('../assets/fonts/now.thin-webfont.woff') format('woff');
-				font-weight: normal;
-				font-style: normal;
-			}
-			
-			html, body {
-				height: 99%;
-			}
-			
-			.main {
-				height: 100%;
-				width: 100%;
-				display: table;
-			}
-
-			.wrapper {
-				display: table-cell;
-				height: 100%;
-				vertical-align: middle;
-			}
-		
-			body {
-				background-color: #202126;
-			}
-			
-			#screenCont {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			
-			#scoreCont {
-				margin-left: 15px;
-			}
-			
-			#navCont {
-				margin-right: 15px;
-			}
-			
-			.score {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 200px;
-				height: 200px;
-				background: #3d3f4a;
-				border-radius: 20px;
-				font-family: nowthin;
-				font-weight: bolder;
-				color: white;
-			}
-			
-			.navigate {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 200px;
-				height: 200px;
-				cursor: pointer;
-				background: #3d3f4a;
-				border-radius: 20px;
-				font-family: nowthin;
-				font-weight: bolder;
-				color: white;
-			}
-			
-			
-			#cellCont {
-				display: inline-block;
-				min-width: 450px;
-				background-color: #2d2e38;
-			}
-			
-			.cell {
-				-webkit-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-				width: 90px;
-				height: 90px;
-				float: left;
-				margin: 3px;
-				perspective: 900px;
-			}
-			
-			.cellInner {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				transition: transform 0.1s;
-				transform-style: preserve-3d;
-			}
-			
-			.flipActivate {
-				transform: rotateY(180deg);
-			}
-
-			.cellFront, .cellBack {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				-webkit-backface-visibility: hidden;
-				backface-visibility: hidden;
-			}
-
-			.cellFront {
-				background: url('../assets/images/frame.png') no-repeat;
-				background-size: cover;
-			}
-
-			.cellBack {
-				transform: rotateY(180deg);
-			}
-			
-			img {
-				width: 100%;
-				height: 100%;
-				image-rendering: pixelated;
-			}
-			
-			.x1 { margin-top: 0; }
-			.y1 { margin-left: 0; }
-			.x5 { margin-bottom: 0; }
-			.y5 { margin-right: 0; }
-		</style>
+		<link href="../css/board.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="main">
-			<div class = "wrapper">
+			<div class ="wrapper">
 				<div id="screenCont">
-					<div id="navCont">
-						<div class="navigate home">Home</div><br>
+					<div id="navCont"><br class="break">
+						<div class="navigate home">Home</div><br class="break1">
 						<div class="navigate start">Start</div>
 					</div>
-					<div id="cellCont">
-						<div class="cell x1 y1">
-							<div class="cellInner">
-								<div class="cellFront"></div>
-								<div class="cellBack"><img></div>
-							</div>
-						</div>
-						<div class="cell x1 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x1 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x1 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x1 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<br style="clear: both;">
+					<div id="cellCont"><br class="break">
+						<div class="cell x1 y1"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
 						<div class="cell x2 y1"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x2 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x2 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x2 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x2 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<br style="clear: both;">
 						<div class="cell x3 y1"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x3 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x3 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x3 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x3 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<br style="clear: both;">
 						<div class="cell x4 y1"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x4 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x4 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x4 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<div class="cell x4 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
-						<br style="clear: both;">
 						<div class="cell x5 y1"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<br style="clear: both;">
+						<div class="cell x1 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x2 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x3 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x4 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
 						<div class="cell x5 y2"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<br style="clear: both;">
+						<div class="cell x1 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x2 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x3 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x4 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
 						<div class="cell x5 y3"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<br style="clear: both;">
+						<div class="cell x1 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x2 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x3 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x4 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
 						<div class="cell x5 y4"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<br style="clear: both;">
+						<div class="cell x1 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x2 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x3 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
+						<div class="cell x4 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
 						<div class="cell x5 y5"><div class="cellInner"><div class="cellFront"></div><div class="cellBack"><img></div></div></div>
 						<br style="clear: both;">
 					</div>
 					<div id="scoreCont">
-						<div class="score" id="lvl">Level: <span>1</span></div><br>
+						<div class="score" id="lvl">Level: <span>1</span></div><br class="break1">
 						<div class="score" id="points">Points: <span>0</span></div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script src="../scripts/game.js">
-		</script>
+		
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<p>TEST</p>
+				<div class="close">&times;</div>
+				<br>
+				<div class="continue">
+					<div class="quit">Quit</div>
+					<div class="proceed">Yes</div>
+				</div>
+			</div>
+		</div>
+		<script src="../scripts/jquery.js"></script>
+		<script src="../scripts/game.js"></script>
 	</body>
 </html>

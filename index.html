@@ -7,14 +7,52 @@
 		<meta name="keywords" content="tic tac toe, tic, tac, toe">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="css/index.css" type="text/css" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<!-- script src="index.js"></script> -->
 	</head>
 	<body>
-		<div class="title">
-			Simon's<br>Memory
+		<div class="main">
+			<div class="wrapper">
+				<div class="title">
+					SIMON'S MEMORY
+				</div>
+				
+				<br>
+				
+				<div class="lore">
+					You awake in a dungeon.<br>In this dungeon lie multiple levels filled with multiple traps.<br>
+					Avoid the traps and safely ascend the dungeon.
+				</div>
+				
+				<br>
+				<div class="start">
+					CLICK TILE TO START
+					<div class="inner">
+						<div class="front"></div>
+						<div class="back"></div>
+					</div>
+				</div>
+				<br><br>
+				
+				<div class="intro">
+					Simon's Memory is a pattern memory game.<br>The instructions are simple: click the yellow tiles <b>after</b>
+					the game shows the pattern.<br>
+					Beware of the golden tiles. As tempting as they may be, they will lead you to certain doom.<br> 
+					Well, any tile other than the yellow ones for that matter.
+				</div>
+				
+				<br>
+				
+				<div class="note">
+					NOTE: Please do not spam the start/quit button.<br>Additionally, some errors may occur due to some errors in loading assets.
+					<br>Should errors arise, please reload the page.
+			</div>
+			</div>
 		</div>
-		<a href="game/board.html">The Game is Here</a>
 		
+		<script src="scripts/jquery.js"></script>
+		<script>
+			$(".start").click(function() {
+				location.href = "game/board.html";
+			});
+		</script>
 	</body>
 </html>
