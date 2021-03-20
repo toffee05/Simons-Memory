@@ -126,7 +126,7 @@ function modal(wl) {
 	if(wl)
 		$(".modal-content p").html("You Have Safely Ascended a Level. Proceed?");
 	else
-		$(".modal-content p").html("You Have Died.");
+		$(".modal-content p").html("You Have Died. You Reached <b>Level " + (lvl - 2) + "</b> with <b>" + score + " Point(s).</b>");
 	
 	$(".modal").css("display", "flex");
 	$(".modal-content").addClass("drop");
