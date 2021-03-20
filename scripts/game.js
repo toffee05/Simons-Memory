@@ -2,10 +2,16 @@ let interval, lvl = 3, xTemp = 0, yTemp = 0, colorTemp = "white", i = 0, i2 = 0,
 badTile = 0, rotate = 0, click = new Audio("../assets/audio/click.mp3"),
 locator = [...Array(lvl)].map(e => Array(lvl));
 
-$(".home").click(function() {
-	location.href = "../index.html";
+$(document).ready(function() {
+	setTimeout(function() {
+		$(".loadScreen").css("opacity", 0);
+		setTimeout(function() {
+			$(".loadScreen").hide();
+		}, 400);
+		$(document).off("ready");
+	}, 500);
 });
-							
+
 $(".start").click(function() {
 	sq++;
 	start();
