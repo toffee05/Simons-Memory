@@ -2,13 +2,12 @@ let interval, lvl = 3, xTemp = 0, yTemp = 0, colorTemp = "white", i = 0, i2 = 0,
 badTile = 0, rotate = 0, click = new Audio("../assets/audio/click.mp3"),
 locator = [...Array(lvl)].map(e => Array(lvl));
 
-$(document).ready(function() {
+$(window).on("load", function() {
 	setTimeout(function() {
 		$(".loadScreen").css("opacity", 0);
 		setTimeout(function() {
 			$(".loadScreen").hide();
 		}, 400);
-		$(document).off("ready");
 	}, 500);
 });
 
@@ -78,18 +77,18 @@ function user() {
 		inputTemp = $(this).attr("class").split(/\s+/);
 		inputTemp.shift();
 		input = [parseInt(inputTemp[0].charAt(1)), parseInt(inputTemp[1].charAt(1))];
-		$("#points span").html(++score);
-		
-		if(input[0] != locator[i][0] || input[1] != locator[i][1]) {
+	
+		if(input[0] == locator[i][0] && input[1] == locator[i][1]){
+			i3++;
+			$("#points span").html(++score);
+			if(i3 == lvl - badTile)
+				modal(true);
+		}
+		else if(input[0] != locator[i][0] || input[1] != locator[i][1]) {
 			sq = 0;
 			newLvl = false;
 			modal(false);
 		}
-		else if(i3 + 1 == lvl - badTile) {
-			modal(true);
-		}
-		else
-			i3++;
 		i++;
 	});
 }
