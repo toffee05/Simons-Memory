@@ -89,16 +89,16 @@ a {
 	perspective: 900px;
 }
 
+.cell:hover {
+	cursor: pointer;
+}
+
 .cellInner {
 	position: relative;
 	width: 100%;
 	height: 100%;
 	transition: transform 0.1s;
 	transform-style: preserve-3d;
-}
-
-.cellInner::hover {
-	cursor: pointer;
 }
 
 .flipActivate {
