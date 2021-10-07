@@ -89,6 +89,10 @@ a {
 	perspective: 900px;
 }
 
+.cell::hover {
+	cursor: pointer;
+}
+
 .cellInner {
 	position: relative;
 	width: 100%;
